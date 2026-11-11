@@ -10,11 +10,14 @@ import java.awt.Insets;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import rewards.lschej.data.DataController;
 import rewards.lschej.data.RewardItem;
+import rewards.lschej.data.InsufficientBalanceError;
 
 public class RewardItemPanel extends JPanel {
 
-    public RewardItemPanel(RewardItem reward) {
+    public RewardItemPanel(RewardItem reward, DataController dataController) {
         setLayout(new GridBagLayout());
         GridBagConstraints gridBag = new GridBagConstraints();
         gridBag.insets = new Insets(0, 20, 0, 20);
@@ -36,6 +39,14 @@ public class RewardItemPanel extends JPanel {
         redeemButton.setFont(new Font("Calibri", Font.BOLD, 24));
         redeemButton.setForeground(Color.white);
         redeemButton.setPreferredSize(new Dimension(150, 60));
+
+        redeemButton.addActionListener(e -> {
+            try {
+                dataController.getMember(dataController.getTarget()).redeemPoints(reward.getPrice());
+            } catch (InsufficientBalanceError error) {
+            }
+        }
+        );
 
         gridBag.gridx = 0;
         gridBag.gridy = 0;

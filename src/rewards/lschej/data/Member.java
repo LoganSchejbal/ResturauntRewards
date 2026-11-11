@@ -1,6 +1,7 @@
 package rewards.lschej.data;
 
 import java.time.LocalDate;
+import java.util.jar.Attributes;
 
 public class Member {
 
@@ -101,7 +102,11 @@ public class Member {
     }
 
     public void redeemPoints(int points) {
-        orderHistory.redeemPoints(points);
-        rewards.updatePoints(orderHistory.collectPoints(), orderHistory.getOldesDate());
+        if (hasSufficientBalance(points)) {
+            orderHistory.redeemPoints(points);
+            rewards.updatePoints(orderHistory.collectPoints(), orderHistory.getOldesDate());
+        } else {
+            throw new InsufficientBalanceError("B: " + rewards.getPointsTotal() + ", P: " + points);
+        }
     }
 }
