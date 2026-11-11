@@ -68,7 +68,7 @@ public class ProfileScreen extends JPanel {
         orderHistoryPanel.setPreferredSize(new Dimension(1000, 500));
         // rewardsItemPanel = new RewardsItemFrame(dataController.getRewards());
         // rewardsItemPanel.setBackground(Color.DARK_GRAY);
-        rewardsItemPanel = new FullRewardsItemPanel(dataController.getRewards(), dataController);
+        rewardsItemPanel = new FullRewardsItemPanel(dataController.getRewards(), dataController, this::refresh);
         rewardsItemPanel.setPreferredSize(new Dimension(1000, 500));
 
         JTabbedPane tabs = new JTabbedPane(JTabbedPane.TOP);

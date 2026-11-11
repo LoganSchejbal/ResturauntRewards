@@ -8,8 +8,10 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 import rewards.lschej.data.DataController;
 import rewards.lschej.data.RewardItem;
@@ -17,7 +19,7 @@ import rewards.lschej.data.InsufficientBalanceError;
 
 public class RewardItemPanel extends JPanel {
 
-    public RewardItemPanel(RewardItem reward, DataController dataController) {
+    public RewardItemPanel(RewardItem reward, DataController dataController, Runnable onRedeemed) {
         setLayout(new GridBagLayout());
         GridBagConstraints gridBag = new GridBagConstraints();
         gridBag.insets = new Insets(0, 20, 0, 20);
@@ -43,7 +45,13 @@ public class RewardItemPanel extends JPanel {
         redeemButton.addActionListener(e -> {
             try {
                 dataController.getMember(dataController.getTarget()).redeemPoints(reward.getPrice());
+                onRedeemed.run();
+                JFrame parent = (JFrame) SwingUtilities.getWindowAncestor(this);
+                new RewardRedeemedSuccessful(dataController, reward, parent).setVisible(true);
             } catch (InsufficientBalanceError error) {
+                onRedeemed.run();
+                JFrame parent = (JFrame) SwingUtilities.getWindowAncestor(this);
+                new RewardRedeemedFail(dataController, reward, parent).setVisible(true);
             }
         }
         );
