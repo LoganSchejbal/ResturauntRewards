@@ -6,6 +6,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Insets;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -40,33 +41,57 @@ public class ProfileScreen extends JPanel {
         scaledProfileIcon = scaledProfileIcon.getScaledInstance(120, 75, Image.SCALE_SMOOTH);
         profileIcon = new ImageIcon(scaledProfileIcon);
         JLabel profileIconObject = new JLabel(profileIcon);
+
+        JPanel userInfoSidePanel = new JPanel();
+        userInfoSidePanel.setLayout(new GridBagLayout());
+        GridBagConstraints sidePanelGB = new GridBagConstraints();
+        sidePanelGB.insets = new Insets(10, 15, 10, 15);
+        userInfoSidePanel.setBackground(Color.GRAY);
+        userInfoSidePanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
         profileName = new JLabel("FirstName LastName");
         profileName.setFont(dataController.settings.largeHeaderFont.deriveFont(java.awt.Font.PLAIN));
         profileName.setForeground(Color.cyan);
+
         emailAddress = new JLabel("emailAddress");
-        phoneNumber = new JLabel("###-###-####");
         emailAddress.setFont(dataController.settings.largeRegularFont);
         emailAddress.setForeground(Color.white);
+
+        phoneNumber = new JLabel("###-###-####");
         phoneNumber.setFont(dataController.settings.largeRegularFont);
         phoneNumber.setForeground(Color.white);
+
         birthday = new JLabel("MM/DD/YYYY");
         birthday.setFont(dataController.settings.largeRegularFont);
         birthday.setForeground(Color.white);
+
         pointsTotal = new JLabel("Rewards Points: 123,456");
         pointsTotal.setFont(dataController.settings.largeHeaderFont);
         pointsTotal.setForeground(Color.RED);
+
         JButton homeButton = new JButton("Home");
         homeButton.setPreferredSize(new Dimension(75, 75));
         homeButton.setMinimumSize(new Dimension(50, 50));
+
         JButton addOrderButton = new JButton("Add Order");
         addOrderButton.setPreferredSize(new Dimension(150, 50));
         addOrderButton.setMinimumSize(new Dimension(75, 30));
         addOrderButton.setFont(dataController.settings.menuFont);
 
+        sidePanelGB.gridx = 0;
+        sidePanelGB.gridy = 0;
+        userInfoSidePanel.add(profileName, sidePanelGB);
+        sidePanelGB.gridy = 1;
+        userInfoSidePanel.add(phoneNumber, sidePanelGB);
+        sidePanelGB.gridy = 2;
+        userInfoSidePanel.add(emailAddress, sidePanelGB);
+        sidePanelGB.gridy = 3;
+        userInfoSidePanel.add(birthday, sidePanelGB);
+        sidePanelGB.gridy = 4;
+        userInfoSidePanel.add(addOrderButton, sidePanelGB);
+
         orderHistoryPanel = new OrderHistoryFrame(null, dataController);
         orderHistoryPanel.setPreferredSize(new Dimension(1000, 500));
-        // rewardsItemPanel = new RewardsItemFrame(dataController.getRewards());
-        // rewardsItemPanel.setBackground(Color.DARK_GRAY);
         rewardsItemPanel = new FullRewardsItemPanel(dataController.getRewards(), dataController, this::refresh);
         rewardsItemPanel.setPreferredSize(new Dimension(1000, 500));
 
@@ -96,15 +121,7 @@ public class ProfileScreen extends JPanel {
         add(homeButton, gridConstraints);
         gridConstraints.gridx = 0;
         gridConstraints.gridy = 1;
-        add(profileName, gridConstraints);
-        gridConstraints.gridy = 2;
-        add(phoneNumber, gridConstraints);
-        gridConstraints.gridy = 3;
-        add(emailAddress, gridConstraints);
-        gridConstraints.gridy = 4;
-        add(birthday, gridConstraints);
-        gridConstraints.gridy = 5;
-        add(addOrderButton, gridConstraints);
+        add(userInfoSidePanel, gridConstraints);
 
     }
 
