@@ -2,7 +2,6 @@ package rewards.lschej.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.JButton;
@@ -24,18 +23,18 @@ public class RewardRedeemedSuccessful extends JDialog {
         GridBagConstraints gridBag = new GridBagConstraints();
 
         JLabel successMessage = new JLabel("You have redeemed " + reward.getName() + "!");
-        successMessage.setFont(new Font("Calibri", Font.BOLD, 30));
+        successMessage.setFont(dataController.settings.dialogHeaderFont);
 
         JLabel rewardImage = new JLabel(reward.getImage());
 
         JLabel rewardPrice = new JLabel("-" + reward.getPrice() + "pts");
-        rewardPrice.setFont(new Font("Calibri", Font.ITALIC, 14));
+        rewardPrice.setFont(dataController.settings.regularTextFont.deriveFont(java.awt.Font.ITALIC));
 
         JLabel accountBalance = new JLabel("Current Balance: " + dataController.getMember(dataController.getTarget()).getPoints() + "pts");
-        accountBalance.setFont(new Font("Calibri", Font.BOLD, 24));
+        accountBalance.setFont(dataController.settings.boldedFont.deriveFont(24f));
 
         JButton close = new JButton("Close");
-        close.setFont(new Font("Calibri", Font.PLAIN, 14));
+        close.setFont(dataController.settings.regularTextFont);
         close.setBackground(Color.BLUE);
         close.setForeground(Color.WHITE);
         close.setPreferredSize(new Dimension(150, 50));

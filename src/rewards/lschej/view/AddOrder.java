@@ -2,7 +2,6 @@ package rewards.lschej.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.time.LocalDate;
@@ -26,21 +25,21 @@ public class AddOrder extends JDialog {
         GridBagConstraints gridBagConstraints = new GridBagConstraints();
 
         JLabel addOrder = new JLabel("Add Order");
-        addOrder.setFont(new Font("Calibri", Font.BOLD, 36));
+        addOrder.setFont(dataController.settings.largeHeaderFont);
         JLabel orderNumberPrompt = new JLabel("Order Number:");
-        orderNumberPrompt.setFont(new Font("Calibri", Font.BOLD, 24));
+        orderNumberPrompt.setFont(dataController.settings.boldedFont.deriveFont(24f));
         JLabel dayPrompt = new JLabel("Day:");
-        dayPrompt.setFont(new Font("Calibri", Font.BOLD, 24));
+        dayPrompt.setFont(dataController.settings.boldedFont.deriveFont(24f));
         JLabel monthPrompt = new JLabel("Month:");
-        monthPrompt.setFont(new Font("Calibri", Font.BOLD, 24));
+        monthPrompt.setFont(dataController.settings.boldedFont.deriveFont(24f));
         JLabel yearPrompt = new JLabel("Year");
-        yearPrompt.setFont(new Font("Calibri", Font.BOLD, 24));
+        yearPrompt.setFont(dataController.settings.boldedFont.deriveFont(24f));
         JLabel totalPrompt = new JLabel("Total Amount: $");
-        totalPrompt.setFont(new Font("Calibri", Font.BOLD, 24));
+        totalPrompt.setFont(dataController.settings.boldedFont.deriveFont(24f));
         JTextField orderNumberField = new JTextField("");
         orderNumberField.setPreferredSize(new Dimension(50, 50));
         orderNumberField.setMinimumSize(new Dimension(25, 25));
-        orderNumberField.setFont(new Font("Calibri", Font.BOLD, 24));
+        orderNumberField.setFont(dataController.settings.boldedFont.deriveFont(24f));
         Integer[] daysList = new Integer[31];
         for (int i = 1; i <= 31; ++i) {
             daysList[i - 1] = i;
@@ -48,7 +47,7 @@ public class AddOrder extends JDialog {
         JComboBox<Integer> dayBox = new JComboBox<>(daysList);
         dayBox.setPreferredSize(new Dimension(50, 50));
         dayBox.setMinimumSize(new Dimension(25, 25));
-        dayBox.setFont(new Font("Calibri", Font.BOLD, 24));
+        dayBox.setFont(dataController.settings.largerRegularFont);
         Integer[] monthsList = new Integer[12];
         for (int i = 1; i <= 12; ++i) {
             monthsList[i - 1] = i;
@@ -56,7 +55,7 @@ public class AddOrder extends JDialog {
         JComboBox<Integer> monthsBox = new JComboBox<>(monthsList);
         monthsBox.setPreferredSize(new Dimension(50, 50));
         monthsBox.setMinimumSize(new Dimension(25, 25));
-        monthsBox.setFont(new Font("Calibri", Font.BOLD, 24));
+        monthsBox.setFont(dataController.settings.largerRegularFont);
         int year = 2020;
         int quantOfYears = LocalDate.now().getYear() - year;
         Integer[] yearsList = new Integer[quantOfYears + 1];
@@ -67,19 +66,19 @@ public class AddOrder extends JDialog {
         JComboBox<Integer> yearBox = new JComboBox<>(yearsList);
         yearBox.setPreferredSize(new Dimension(100, 50));
         yearBox.setMinimumSize(new Dimension(50, 25));
-        yearBox.setFont(new Font("Calibri", Font.BOLD, 24));
+        yearBox.setFont(dataController.settings.largerRegularFont);
         JTextField totaField = new JTextField("");
         totaField.setPreferredSize(new Dimension(100, 50));
         totaField.setMinimumSize(new Dimension(50, 25));
-        totaField.setFont(new Font("Calibri", Font.BOLD, 24));
+        totaField.setFont(dataController.settings.largerRegularFont);
         JButton submitButton = new JButton("Submit");
         submitButton.setPreferredSize(new Dimension(150, 75));
-        submitButton.setFont(new Font("Calibri", Font.BOLD, 24));
+        submitButton.setFont(dataController.settings.largerRegularFont);
         submitButton.setBackground(Color.BLUE);
         submitButton.setForeground(Color.white);
         JButton cancelButton = new JButton("Cancel");
         cancelButton.setPreferredSize(new Dimension(150, 75));
-        cancelButton.setFont(new Font("Calibri", Font.BOLD, 24));
+        cancelButton.setFont(dataController.settings.largerRegularFont);
 
         cancelButton.addActionListener(e -> this.dispose());
         submitButton.addActionListener(e -> {
@@ -89,7 +88,8 @@ public class AddOrder extends JDialog {
             LocalDate orderDate = LocalDate.of(orderYear, month, day);
             int orderNumber = Integer.parseInt(orderNumberField.getText());
             if (dataController.getMember(dataController.getTarget()).getOrderHistory().findOrder(orderDate, orderNumber) == null) {
-                dataController.getMember(dataController.getTarget()).addOrder(new Order(orderNumber, orderDate, Double.parseDouble(totaField.getText()), dataController));
+                double totalAmount = Double.parseDouble(totaField.getText());
+                dataController.getMember(dataController.getTarget()).addOrder(new Order(orderNumber, orderDate, totalAmount, dataController));
                 profileScreen.refresh();
                 this.dispose();
             } else {

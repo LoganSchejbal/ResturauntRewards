@@ -2,7 +2,6 @@ package rewards.lschej.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -29,16 +28,16 @@ public class RewardItemPanel extends JPanel {
         JLabel image = new JLabel(reward.getImage());
 
         JLabel rewardName = new JLabel(reward.getName());
-        rewardName.setFont(new Font("Calibri", Font.BOLD, 24));
+        rewardName.setFont(dataController.settings.boldedFont.deriveFont(24f));
         rewardName.setForeground(Color.WHITE);
 
         JLabel rewardPrice = new JLabel("\t" + reward.getPrice() + "pts");
-        rewardPrice.setFont(new Font("Calibri", Font.PLAIN, 24));
+        rewardPrice.setFont(dataController.settings.largeRegularFont);
         rewardPrice.setForeground(Color.CYAN);
 
         JButton redeemButton = new JButton("Redeem");
         redeemButton.setBackground(Color.blue);
-        redeemButton.setFont(new Font("Calibri", Font.BOLD, 24));
+        redeemButton.setFont(dataController.settings.boldedFont.deriveFont(24f));
         redeemButton.setForeground(Color.white);
         redeemButton.setPreferredSize(new Dimension(150, 60));
 

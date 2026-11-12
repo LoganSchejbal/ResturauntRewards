@@ -2,7 +2,6 @@ package rewards.lschej.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
@@ -42,19 +41,19 @@ public class ProfileScreen extends JPanel {
         profileIcon = new ImageIcon(scaledProfileIcon);
         JLabel profileIconObject = new JLabel(profileIcon);
         profileName = new JLabel("FirstName LastName");
-        profileName.setFont(new Font("Calibri", Font.PLAIN, 36));
+        profileName.setFont(dataController.settings.largeHeaderFont.deriveFont(java.awt.Font.PLAIN));
         profileName.setForeground(Color.cyan);
         emailAddress = new JLabel("emailAddress");
         phoneNumber = new JLabel("###-###-####");
-        emailAddress.setFont(new Font("Calibri", Font.PLAIN, 24));
+        emailAddress.setFont(dataController.settings.largeRegularFont);
         emailAddress.setForeground(Color.white);
-        phoneNumber.setFont(new Font("Calibri", Font.PLAIN, 24));
+        phoneNumber.setFont(dataController.settings.largeRegularFont);
         phoneNumber.setForeground(Color.white);
         birthday = new JLabel("MM/DD/YYYY");
-        birthday.setFont(new Font("Calibri", Font.PLAIN, 24));
+        birthday.setFont(dataController.settings.largeRegularFont);
         birthday.setForeground(Color.white);
         pointsTotal = new JLabel("Rewards Points: 123,456");
-        pointsTotal.setFont(new Font("Callibri", Font.BOLD, 36));
+        pointsTotal.setFont(dataController.settings.largeHeaderFont);
         pointsTotal.setForeground(Color.RED);
         JButton homeButton = new JButton("Home");
         homeButton.setPreferredSize(new Dimension(75, 75));
@@ -62,9 +61,9 @@ public class ProfileScreen extends JPanel {
         JButton addOrderButton = new JButton("Add Order");
         addOrderButton.setPreferredSize(new Dimension(150, 50));
         addOrderButton.setMinimumSize(new Dimension(75, 30));
-        addOrderButton.setFont(new Font("Calibri", Font.PLAIN, 22));
+        addOrderButton.setFont(dataController.settings.menuFont);
 
-        orderHistoryPanel = new OrderHistoryFrame(null);
+        orderHistoryPanel = new OrderHistoryFrame(null, dataController);
         orderHistoryPanel.setPreferredSize(new Dimension(1000, 500));
         // rewardsItemPanel = new RewardsItemFrame(dataController.getRewards());
         // rewardsItemPanel.setBackground(Color.DARK_GRAY);
@@ -75,7 +74,7 @@ public class ProfileScreen extends JPanel {
         tabs.addTab("Rewards", rewardsItemPanel);
         tabs.addTab("Orders", orderHistoryPanel);
         tabs.setPreferredSize(new Dimension(1000, 500));
-        tabs.setFont(new Font("Calibri", Font.PLAIN, 32));
+        tabs.setFont(dataController.settings.tabFont);
 
         homeButton.addActionListener(e -> controller.switchScreen("HOME"));
         addOrderButton.addActionListener(e -> {

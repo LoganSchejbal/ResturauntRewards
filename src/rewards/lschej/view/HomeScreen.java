@@ -2,7 +2,6 @@ package rewards.lschej.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -25,16 +24,17 @@ public class HomeScreen extends JPanel {
         setBackground(Color.darkGray);
 
         JLabel title = new JLabel("Resturaunt Rewards");
-        title.setFont(new Font("Calibri", Font.BOLD, 50));
+        title.setFont(dataController.settings.titleFont);
         title.setForeground(Color.CYAN);
         JLabel phonePrompt = new JLabel("Phone/Account Number: ");
-        phonePrompt.setFont(new Font("Calibri", Font.PLAIN, 24));
+        phonePrompt.setFont(dataController.settings.largeRegularFont);
         phonePrompt.setForeground(Color.CYAN);
         phoneEntry = new JTextField("");
         phoneEntry.setPreferredSize(new Dimension(350, 50));
         phoneEntry.setMinimumSize(new Dimension(250, 25));
-        phoneEntry.setFont(new Font("Calibri", Font.PLAIN, 24));
+        phoneEntry.setFont(dataController.settings.largeRegularFont);
         JButton enterButton = new JButton("Enter");
+        enterButton.setFont(dataController.settings.boldedFont);
         enterButton.setPreferredSize(new Dimension(100, 50));
         enterButton.setMinimumSize(new Dimension(75, 25));
 

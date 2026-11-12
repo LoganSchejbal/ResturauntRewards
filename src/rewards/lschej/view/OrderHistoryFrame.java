@@ -1,7 +1,6 @@
 package rewards.lschej.view;
 
 import java.awt.BorderLayout;
-import java.awt.Font;
 import java.util.Collections;
 import java.util.List;
 import javax.swing.JPanel;
@@ -11,17 +10,18 @@ import javax.swing.table.AbstractTableModel;
 import rewards.lschej.data.Member;
 import rewards.lschej.data.Order;
 import rewards.lschej.data.OrderTableModel;
+import rewards.lschej.data.DataController;
 
 public class OrderHistoryFrame extends JPanel {
 
     private final JTable orderTable;
 
-    public OrderHistoryFrame(Member member) {
+    public OrderHistoryFrame(Member member, DataController dataController) {
         setLayout(new BorderLayout());
         orderTable = new JTable();
         orderTable.setRowHeight(32);
-        orderTable.getTableHeader().setFont(new Font("Calibri", Font.PLAIN, 24));
-        orderTable.setFont(new Font("Claibri", Font.PLAIN, 24));
+        orderTable.getTableHeader().setFont(dataController.settings.largeRegularFont);
+        orderTable.setFont(dataController.settings.largeRegularFont);
         add(new JScrollPane(orderTable), BorderLayout.CENTER);
         updateTableModel(member);
     }

@@ -3,7 +3,6 @@ package rewards.lschej.view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JList;
@@ -25,13 +24,13 @@ public class RewardsItemSelectionPanel extends JPanel {
         JButton newRewardButton = new JButton("New");
         newRewardButton.setBackground(Color.green);
         newRewardButton.setForeground(Color.white);
-        newRewardButton.setFont(new Font("Calibri", Font.PLAIN, 24));
+        newRewardButton.setFont(dataController.settings.largeRegularFont);
         newRewardButton.setPreferredSize(new Dimension(175, 50));
 
         JButton deleteRewardButton = new JButton("Delete");
         deleteRewardButton.setBackground(Color.red);
         deleteRewardButton.setForeground(Color.white);
-        deleteRewardButton.setFont(new Font("Calibri", Font.PLAIN, 24));
+        deleteRewardButton.setFont(dataController.settings.largeRegularFont);
         deleteRewardButton.setPreferredSize(new Dimension(175, 50));
 
         JPanel rewardButtonPanel = new JPanel(new GridLayout(1, 2));
@@ -39,7 +38,7 @@ public class RewardsItemSelectionPanel extends JPanel {
         rewardButtonPanel.add(deleteRewardButton);
 
         rewardsList = new JList<>(dataController.getRewards().toArray(new RewardItem[0]));
-        rewardsList.setFont(new Font("Calibri", Font.PLAIN, 20));
+        rewardsList.setFont(dataController.settings.mediumRegularFont);
         rewardsList.setSelectedIndex(0);
         rewardsList.setFixedCellHeight(35);
         rewardsList.addListSelectionListener(e -> {

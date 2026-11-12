@@ -1,7 +1,6 @@
 package rewards.lschej.view;
 
 import java.awt.CardLayout;
-import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -59,27 +58,26 @@ public class MainFrame extends JFrame implements ScreenController {
         cardPanel.add(create, "CREATE");
 
         //Menu Bar Setup
-        Font menuBarFont = new Font("Calibri", Font.PLAIN, 22);
         JMenuBar menuBar = new JMenuBar();
         JMenu fileMenu = new JMenu("File");
-        fileMenu.setFont(menuBarFont);
+        fileMenu.setFont(dataController.settings.menuFont);
 
         JMenu editMenu = new JMenu("Edit");
-        editMenu.setFont(menuBarFont);
+        editMenu.setFont(dataController.settings.menuFont);
         JMenuItem editRewardsItems = new JMenuItem("Edit Rewards Items");
-        editRewardsItems.setFont(menuBarFont);
+        editRewardsItems.setFont(dataController.settings.menuFont);
         editMenu.add(editRewardsItems);
         editRewardsItems.addActionListener(e -> new RewardsConfiutator(dataController, this));
 
         JMenu settingsMenu = new JMenu("Settings");
-        settingsMenu.setFont(menuBarFont);
+        settingsMenu.setFont(dataController.settings.menuFont);
         JMenuItem rewardsSettings = new JMenuItem("Rewards Settings");
-        rewardsSettings.setFont(menuBarFont);
+        rewardsSettings.setFont(dataController.settings.menuFont);
         settingsMenu.add(rewardsSettings);
         rewardsSettings.addActionListener(e -> new RewardsSettingsMenu(dataController, this));
 
         JMenu helpMenu = new JMenu("Help");
-        helpMenu.setFont(menuBarFont);
+        helpMenu.setFont(dataController.settings.menuFont);
 
         menuBar.add(fileMenu);
         menuBar.add(editMenu);

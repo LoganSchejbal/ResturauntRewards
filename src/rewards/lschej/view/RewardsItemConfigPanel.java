@@ -3,7 +3,6 @@ package rewards.lschej.view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FileDialog;
-import java.awt.Font;
 import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -19,31 +18,29 @@ import rewards.lschej.data.RewardItem;
 
 public class RewardsItemConfigPanel extends JPanel {
 
-    Font regular = new Font("Calibri", Font.PLAIN, 24);
-
     public RewardsItemConfigPanel(DataController dataController, RewardItem rewardItem, RewardsConfiutator parent) {
         setLayout(new GridBagLayout());
 
         JLabel itemNamePrompt = new JLabel("Item Name: ");
-        itemNamePrompt.setFont(regular);
+        itemNamePrompt.setFont(dataController.settings.largeRegularFont);
         JTextField itemNameField = new JTextField(rewardItem.getName());
-        itemNameField.setFont(regular);
+        itemNameField.setFont(dataController.settings.largeRegularFont);
         itemNameField.setPreferredSize(new Dimension(350, 50));
 
         JLabel itemPricePrompt = new JLabel("Item Price: ");
-        itemPricePrompt.setFont(regular);
+        itemPricePrompt.setFont(dataController.settings.largeRegularFont);
         JTextField itemPriceField = new JTextField(Integer.toString(rewardItem.getPrice()));
-        itemPriceField.setFont(regular);
+        itemPriceField.setFont(dataController.settings.largeRegularFont);
         itemPriceField.setPreferredSize(new Dimension(150, 50));
 
         JLabel itemImagePrompt = new JLabel("Item Image");
-        itemImagePrompt.setFont(regular);
+        itemImagePrompt.setFont(dataController.settings.largeRegularFont);
         JLabel itemImage = new JLabel(new ImageIcon(rewardItem.getImage().getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
         FileDialog fileChooser = new FileDialog((Frame) null, "Select an Image");
         fileChooser.setMode(FileDialog.LOAD);
         JButton itemImageSelection = new JButton("Select Image");
         itemImageSelection.setPreferredSize(new Dimension(200, 50));
-        itemImageSelection.setFont(regular);
+        itemImageSelection.setFont(dataController.settings.largeRegularFont);
         itemImageSelection.addActionListener(e -> {
             fileChooser.setVisible(true);
             if (fileChooser.getFile() != null) {
@@ -56,7 +53,7 @@ public class RewardsItemConfigPanel extends JPanel {
 
         JButton submitButton = new JButton("Submit");
         submitButton.setPreferredSize(new Dimension(150, 75));
-        submitButton.setFont(new Font("Calibri", Font.BOLD, 24));
+        submitButton.setFont(dataController.settings.boldedFont.deriveFont(24f));
         submitButton.setBackground(Color.blue);
         submitButton.setForeground(Color.white);
         submitButton.addActionListener(e -> {

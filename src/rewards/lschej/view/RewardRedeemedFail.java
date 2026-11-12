@@ -2,7 +2,6 @@ package rewards.lschej.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
@@ -25,17 +24,17 @@ public class RewardRedeemedFail extends JDialog {
         GridBagConstraints gridBag = new GridBagConstraints();
 
         JLabel failMessage = new JLabel("Insufficient Balance");
-        failMessage.setFont(new Font("Calibri", Font.BOLD, 30));
+        failMessage.setFont(dataController.settings.dialogHeaderFont);
         failMessage.setForeground(Color.RED);
 
         JLabel rewardPrice = new JLabel("Cost: " + reward.getPrice() + "pts");
-        rewardPrice.setFont(new Font("Calibri", Font.ITALIC, 14));
+        rewardPrice.setFont(dataController.settings.regularTextFont.deriveFont(java.awt.Font.ITALIC));
 
         JLabel accountBalance = new JLabel("Balance: " + dataController.getMember(dataController.getTarget()).getPoints() + "pts");
-        accountBalance.setFont(new Font("Calibri", Font.BOLD, 14));
+        accountBalance.setFont(dataController.settings.boldedFont.deriveFont(14f));
 
         JButton close = new JButton("Close");
-        close.setFont(new Font("Calibri", Font.PLAIN, 14));
+        close.setFont(dataController.settings.regularTextFont);
         close.setBackground(Color.BLUE);
         close.setForeground(Color.WHITE);
         close.setPreferredSize(new Dimension(150, 50));

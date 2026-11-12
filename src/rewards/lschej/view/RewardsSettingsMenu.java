@@ -2,7 +2,6 @@ package rewards.lschej.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.JButton;
@@ -24,27 +23,27 @@ public class RewardsSettingsMenu extends JDialog {
 
         JLabel orderLifespanPrompt = new JLabel("Order Expitation: ");
         orderLifespanPrompt.setToolTipText("This Setting determines how long an order's points last before they expire.");
-        orderLifespanPrompt.setFont(new Font("Calibri", Font.PLAIN, 24));
+        orderLifespanPrompt.setFont(dataController.settings.largeRegularFont);
         JTextField orderLifespanField = new JTextField(Integer.toString(dataController.settings.getPointsLifespan()));
-        orderLifespanField.setFont(new Font("Claibri", Font.PLAIN, 24));
+        orderLifespanField.setFont(dataController.settings.largeRegularFont);
         orderLifespanField.setPreferredSize(new Dimension(100, 75));
         orderLifespanField.setMinimumSize(new Dimension(75, 50));
         JLabel pointsRatioPrompt = new JLabel("Total to Points Ratio: ");
         pointsRatioPrompt.setToolTipText("This setting adjusts the total to points ratio for orders. 10 = 10X the total. 0.1 = 10% of the total");
-        pointsRatioPrompt.setFont(new Font("Calibri", Font.PLAIN, 24));
+        pointsRatioPrompt.setFont(dataController.settings.largeRegularFont);
         JTextField pointsRatioField = new JTextField(Double.toString(dataController.settings.getPointsToTotalRatio()));
-        pointsRatioField.setFont(new Font("Calibri", Font.PLAIN, 24));
+        pointsRatioField.setFont(dataController.settings.largeRegularFont);
         pointsRatioField.setPreferredSize(new Dimension(100, 75));
         pointsRatioField.setMinimumSize(new Dimension(75, 50));
 
         JButton submitButton = new JButton("Submit");
         submitButton.setPreferredSize(new Dimension(150, 75));
-        submitButton.setFont(new Font("Calibri", Font.BOLD, 24));
+        submitButton.setFont(dataController.settings.boldedFont.deriveFont(24f));
         submitButton.setBackground(Color.BLUE);
         submitButton.setForeground(Color.white);
         JButton cancelButton = new JButton("Cancel");
         cancelButton.setPreferredSize(new Dimension(150, 75));
-        cancelButton.setFont(new Font("Calibri", Font.BOLD, 24));
+        cancelButton.setFont(dataController.settings.boldedFont.deriveFont(24f));
 
         cancelButton.addActionListener(e -> this.dispose());
         submitButton.addActionListener(e -> {
