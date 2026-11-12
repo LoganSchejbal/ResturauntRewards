@@ -1,7 +1,9 @@
 package rewards.lschej.data;
 
+import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Locale;
 import javax.swing.table.AbstractTableModel;
 
 public class OrderTableModel extends AbstractTableModel {
@@ -30,13 +32,14 @@ public class OrderTableModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
+        NumberFormat dollarFormat = NumberFormat.getCurrencyInstance(Locale.US);
         switch (columnIndex) {
             case 0:
                 return orders.get(rowIndex).getOrderDate();
             case 1:
                 return orders.get(rowIndex).getOrderNumber();
             case 2:
-                return orders.get(rowIndex).getOrderTotal();
+                return dollarFormat.format(orders.get(rowIndex).getOrderTotal());
             case 3:
                 return orders.get(rowIndex).getPoints();
             default:
@@ -52,7 +55,7 @@ public class OrderTableModel extends AbstractTableModel {
             case 1:
                 return Integer.class;
             case 2:
-                return Double.class;
+                return String.class;
             case 3:
                 return Integer.class;
             default:

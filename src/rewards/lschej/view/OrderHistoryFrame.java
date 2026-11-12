@@ -6,11 +6,13 @@ import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableCellRenderer;
+import rewards.lschej.data.DataController;
 import rewards.lschej.data.Member;
 import rewards.lschej.data.Order;
 import rewards.lschej.data.OrderTableModel;
-import rewards.lschej.data.DataController;
 
 public class OrderHistoryFrame extends JPanel {
 
@@ -37,5 +39,11 @@ public class OrderHistoryFrame extends JPanel {
 
         AbstractTableModel orderTableModel = new OrderTableModel(orderList);
         orderTable.setModel(orderTableModel);
+
+        DefaultTableCellRenderer centerAlignedRenderer = new DefaultTableCellRenderer();
+        centerAlignedRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+        for (int column = 0; column < orderTable.getColumnCount(); column++) {
+            orderTable.getColumnModel().getColumn(column).setCellRenderer(centerAlignedRenderer);
+        }
     }
 }
